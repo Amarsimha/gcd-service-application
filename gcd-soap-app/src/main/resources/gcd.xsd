@@ -1,0 +1,44 @@
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://gcdservice.com/soap" targetNamespace="http://gcdservice.com/soap">
+	<xs:element name="gcdRequest">
+		<xs:complexType />
+	</xs:element>
+	<xs:element name="gcdResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element type="xs:int" name="gcd" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="gcdListRequest">
+		<xs:complexType />
+	</xs:element>
+	<xs:element name="gcdListResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="gcdList">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="xs:int" name="gcd" maxOccurs="unbounded"
+								minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="gcdSumRequest">
+		<xs:complexType />
+	</xs:element>
+	<xs:element name="gcdSumResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element type="xs:int" name="gcdSum" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>
