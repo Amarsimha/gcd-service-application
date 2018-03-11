@@ -81,52 +81,60 @@ The ‘gcdoutput.war’ provides the services to retrieve computed gcd value(s) 
 
 #### Gcdinput service
 1. No credentials provided
+
    C:\>curl -X POST  "http://localhost:8080/gcdinput/push?firstNumber=12345&secondNumber=54321"
+   
    **HTTP Status 401 : Full authentication is required to access this resource**
-   C:\>
 
 1. Invalid input - Negative integers
+
    C:\>curl -X POST  --user admin:admin123 "http://localhost:8080/gcdinput/push?firstNumber=12345&secondNumber=-54321"
+   
    **Invalid Input**
-   C:\>
 
 1. Valid input 
+
    C:\>curl -X POST  --user admin:admin123 "http://localhost:8080/gcdinput/push?firstNumber=12345&secondNumber=54321"
+   
    **Success**
-   C:\>
+
    
 1. Listing service
+
    C:\>curl --user admin:admin123 "http://localhost:8080/gcdinput/list"
+   
    **[12345,54321,125,58,15,375]**
-   C:\>
+   
 
 #### Gcdoutput service
 1. No credential provided
+
    C:\Curl>curl --header "content-type:text/xml" -d @gcdrequest.xml http://localhost:8080/gcdoutput/ws/
    **HTTP Status 401 : Full authentication is required to access this resource**
    C:\Curl>
 
 1. Compute gcd
+
    C:\Curl>curl --header "content-type:text/xml" --user admin:admin123 -d @gcdrequest.xml http://localhost:8080/gcdoutput/ws/
    ~~~xml 
       <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><SOAP-ENV:Body><gcdResponse><gcd>3</gcd></gcdResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
-~
+
 
 1. Compute gcd - no numbers in queue
+
    C:\Curl>curl --header "content-type:text/xml" --user admin:admin123 -d @gcdrequest.xml http://localhost:8080/gcdoutput/ws/
    ~~~xml 
    <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><SOAP-ENV:Body><gcdResponse><gcd>-1</gcd></gcdResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
-~
 
 1. Get gcd list
+
    C:\Curl>curl --header "content-type:text/xml" --user admin:admin123 -d @gcdlistrequest.xml http://localhost:8080/gcdoutput/ws/
    ~~~xml
    <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><SOAP-ENV:Body><gcdListResponse><gcdList><gcd>3</gcd><gcd>1</gcd><gcd>15</gcd></gcdList></gcdListResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
-~
    C:\Curl>
 
 1. Get gcd sum
+
    C:\Curl>curl --header "content-type:text/xml" --user admin:admin123 -d @gcdsumrequest.xml http://localhost:8080/gcdoutput/ws/
    ~~~xml
    <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><SOAP-ENV:Body><gcdSumResponse><gcdSum>19</gcdSum></gcdSumResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
-~
